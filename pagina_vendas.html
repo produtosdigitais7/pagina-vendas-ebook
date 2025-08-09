@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiros Passos na Programação - Domine a Lógica e Transforme Sua Carreira</title>
+    <meta name="description" content="Aprenda lógica de programação do zero com o e-book mais completo para iniciantes. Transforme sua carreira em tecnologia hoje mesmo!">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #667eea;
+        }
+
+        .cta-header {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,1000 1000,0 1000,1000"/></svg>');
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* Preço e Oferta */
+        .price-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price-old {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .price-new {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-installments {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* CTA Principal */
+        .cta-main {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-main:hover::before {
+            left: 100%;
+        }
+
+        .cta-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Seções */
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        /* Benefícios */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .benefit-card p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* Depoimentos */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #667eea;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .testimonial-role {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Garantia */
+        .guarantee {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .guarantee-badge {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .guarantee-badge i {
+            font-size: 3rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #5a6fd8;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Urgência */
+        .urgency {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .urgency h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .price-section {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .cta-main {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i> ProgramaçãoZero
+            </div>
+            <a href="#comprar" class="cta-header">
+                <i class="fas fa-shopping-cart"></i> Comprar Agora
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in-up">
+                Domine a <span class="highlight">Lógica de Programação</span><br>
+                e Transforme Sua Carreira em Tecnologia
+            </h1>
+            <p class="subtitle fade-in-up">
+                O e-book mais completo para iniciantes absolutos que querem aprender programação do ZERO, 
+                sem complicações e com uma metodologia comprovada que já ajudou milhares de pessoas.
+            </p>
+            
+            <div class="price-section fade-in-up">
+                <div class="price-old">De R$ 97,00</div>
+                <div class="price-new">R$ 47,00</div>
+                <div class="price-installments">ou 12x de R$ 4,58 sem juros</div>
+                
+                <a href="#" class="cta-main" id="cta-comprar">
+                    <i class="fas fa-download"></i> QUERO COMEÇAR AGORA
+                </a>
+                
+                <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-shield-alt"></i> Garantia de 7 dias ou seu dinheiro de volta
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgência -->
+    <section class="urgency">
+        <div class="container">
+            <h3><i class="fas fa-fire"></i> OFERTA LIMITADA!</h3>
+            <p>Esta promoção especial termina em:</p>
+            <div class="countdown" id="countdown">23:59:45</div>
+            <p>Não perca esta oportunidade única de começar sua jornada na programação!</p>
+        </div>
+    </section>
+
+    <!-- Problema -->
+    <section class="section">
+        <div class="container">
+            <h2>Você Está Cansado de Tentar Aprender Programação e Não Conseguir?</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: #495057;">
+                <p style="margin-bottom: 30px;">
+                    <strong>Se você já tentou aprender programação e se sentiu perdido, confuso ou frustrado, você não está sozinho.</strong>
+                </p>
+                
+                <div style="text-align: left; margin: 40px 0;">
+                    <p style="margin-bottom: 20px;"><i class="fas fa-times" style="color: #e74c3c; margin-right: 10px;"></i> Você começou um curso online mas desistiu porque era muito técnico?</p>
+                    <p style="margin-bottom: 20px;"><i class="fas fa-times" style="color: #e74c3c; margin-right: 10px;"></i> Tentou aprender uma linguagem de programação mas não entendeu a lógica por trás?</p>
+                    <p style="margin-bottom: 20px;"><i class="fas fa-times" style="color: #e74c3c; margin-right: 10px;"></i> Ficou perdido com tantos conceitos técnicos e jargões complicados?</p>
+                    <p style="margin-bottom: 20px;"><i class="fas fa-times" style="color: #e74c3c; margin-right: 10px;"></i> Achou que programação era "só para gênios" ou pessoas com formação em exatas?</p>
+                </div>
+                
+                <p style="font-size: 1.2rem; font-weight: 600; color: #2c3e50;">
+                    O problema não é você. O problema é que a maioria dos materiais ensina programação de forma errada!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>A Solução Que Você Estava Procurando</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem;">
+                <p style="margin-bottom: 30px; font-size: 1.2rem; color: #2c3e50;">
+                    <strong>"Primeiros Passos na Programação: Lógica e Fundamentos para Iniciantes Absolutos"</strong> 
+                    é o único e-book que ensina programação da forma CERTA: começando pela base.
+                </p>
+                
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 40px 0;">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">Por que este e-book é diferente?</h3>
+                    <p style="text-align: left; margin-bottom: 20px;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> <strong>Linguagem simples:</strong> Explicações claras, sem jargões técnicos desnecessários</p>
+                    <p style="text-align: left; margin-bottom: 20px;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> <strong>Analogias do dia a dia:</strong> Conceitos complexos explicados com exemplos que você já conhece</p>
+                    <p style="text-align: left; margin-bottom: 20px;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> <strong>Foco na lógica:</strong> Você aprende a PENSAR como um programador antes de escrever código</p>
+                    <p style="text-align: left; margin-bottom: 20px;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> <strong>Exercícios práticos:</strong> Mais de 30 exercícios para fixar o aprendizado</p>
+                    <p style="text-align: left;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> <strong>Base sólida:</strong> Fundamentos que funcionam em QUALQUER linguagem de programação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conteúdo do E-book -->
+    <section class="section">
+        <div class="container">
+            <h2>O Que Você Vai Aprender</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Capítulo 1: O Que é Lógica de Programação?</h3>
+                    <p>Entenda os fundamentos do pensamento lógico e como aplicá-lo na programação. Aprenda a criar seus primeiros algoritmos usando exemplos do cotidiano.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-sitemap"></i></div>
+                    <h3>Capítulo 2: Ferramentas do Pensamento Lógico</h3>
+                    <p>Domine fluxogramas, pseudocódigo, variáveis e constantes. As ferramentas essenciais para organizar suas ideias antes de programar.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Capítulo 3: Tipos de Dados e Operadores</h3>
+                    <p>Aprenda a trabalhar com diferentes tipos de informação e como manipulá-las usando operadores aritméticos, relacionais e lógicos.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-code-branch"></i></div>
+                    <h3>Capítulo 4: Tomada de Decisão</h3>
+                    <p>Descubra como fazer seus programas "pensarem" e tomarem decisões usando estruturas condicionais (SE, SENÃO, ESCOLHA).</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Capítulo 5: Estruturas de Repetição</h3>
+                    <p>Automatize tarefas repetitivas com laços de repetição (ENQUANTO, PARA, FAÇA-ENQUANTO). O poder da automação na programação.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Capítulo 6: Funções e Procedimentos</h3>
+                    <p>Organize seu código de forma profissional usando modularização. Aprenda a criar blocos de código reutilizáveis e eficientes.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-table"></i></div>
+                    <h3>Capítulo 7: Vetores e Matrizes</h3>
+                    <p>Trabalhe com coleções de dados usando as estruturas de dados mais fundamentais da programação.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Capítulo 8: Resolução de Problemas</h3>
+                    <p>Metodologia completa para resolver qualquer problema de programação, técnicas de depuração e boas práticas profissionais.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px; padding: 40px; background: #f8f9fa; border-radius: 15px;">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">BÔNUS EXCLUSIVOS</h3>
+                <p style="margin-bottom: 15px;"><i class="fas fa-gift" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Gabarito completo</strong> com soluções de todos os exercícios</p>
+                <p style="margin-bottom: 15px;"><i class="fas fa-gift" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Glossário de termos</strong> com mais de 50 conceitos explicados</p>
+                <p><i class="fas fa-gift" style="color: #e74c3c; margin-right: 10px;"></i> <strong>Exemplos de algoritmos completos</strong> para você se inspirar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>O Que Nossos Alunos Estão Dizendo</h2>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Finalmente encontrei um material que explica programação de forma simples! Em 2 semanas já estava criando meus próprios algoritmos. Recomendo para qualquer pessoa que quer começar na área."
+                    </div>
+                    <div class="testimonial-author">Maria Silva</div>
+                    <div class="testimonial-role">Iniciante em Programação</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Tentei vários cursos online mas sempre desistia. Este e-book mudou tudo! A metodologia é incrível e os exercícios realmente ajudam a fixar o conteúdo. Hoje trabalho como desenvolvedor."
+                    </div>
+                    <div class="testimonial-author">João Santos</div>
+                    <div class="testimonial-role">Desenvolvedor Junior</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Comprei pensando que seria mais do mesmo, mas me surpreendi! A forma como os conceitos são explicados é genial. Minha filha de 16 anos também conseguiu entender perfeitamente."
+                    </div>
+                    <div class="testimonial-author">Ana Costa</div>
+                    <div class="testimonial-role">Professora</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Garantia -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-badge">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2>Garantia Incondicional de 7 Dias</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                Estamos tão confiantes na qualidade do nosso e-book que oferecemos uma garantia total. 
+                Se você não ficar 100% satisfeito, devolvemos seu dinheiro sem perguntas.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <i class="fas fa-plus" style="float: right; transition: transform 0.3s;"></i>
+                        Preciso ter conhecimento prévio em programação?
+                    </div>
+                    <div class="faq-answer">
+                        Não! Este e-book foi criado especificamente para iniciantes absolutos. Começamos do zero e explicamos cada conceito de forma simples e clara.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <i class="fas fa-plus" style="float: right; transition: transform 0.3s;"></i>
+                        Em quanto tempo vou conseguir programar?
+                    </div>
+                    <div class="faq-answer">
+                        Com dedicação de 1-2 horas por dia, em 2-3 semanas você terá uma base sólida em lógica de programação e estará pronto para aprender qualquer linguagem específica.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <i class="fas fa-plus" style="float: right; transition: transform 0.3s;"></i>
+                        O e-book ensina alguma linguagem específica?
+                    </div>
+                    <div class="faq-answer">
+                        Não, e isso é proposital! Ensinamos a lógica universal que funciona em TODAS as linguagens. Depois você pode escolher Python, JavaScript, Java ou qualquer outra.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <i class="fas fa-plus" style="float: right; transition: transform 0.3s;"></i>
+                        Como recebo o e-book após a compra?
+                    </div>
+                    <div class="faq-answer">
+                        Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link para download do e-book em PDF.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <i class="fas fa-plus" style="float: right; transition: transform 0.3s;"></i>
+                        Posso imprimir o e-book?
+                    </div>
+                    <div class="faq-answer">
+                        Sim! O e-book está em formato PDF e você pode imprimir quantas cópias quiser para seu uso pessoal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;" id="comprar">
+        <div class="container">
+            <h2 style="color: white;">Não Deixe Sua Carreira em Tecnologia Para Depois!</h2>
+            
+            <p style="font-size: 1.2rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Milhares de pessoas já transformaram suas vidas aprendendo programação. 
+                <strong>Sua vez é AGORA!</strong>
+            </p>
+            
+            <div class="price-section" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);">
+                <div class="price-old">De R$ 97,00</div>
+                <div class="price-new">R$ 47,00</div>
+                <div class="price-installments">ou 12x de R$ 4,58 sem juros</div>
+                
+                <a href="#" class="cta-main" id="cta-comprar-final">
+                    <i class="fas fa-download"></i> SIM, EU QUERO COMEÇAR AGORA!
+                </a>
+                
+                <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-shield-alt"></i> Garantia de 7 dias ou seu dinheiro de volta<br>
+                    <i class="fas fa-download"></i> Download imediato após a compra<br>
+                    <i class="fas fa-mobile-alt"></i> Acesso em qualquer dispositivo
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+                Oferta válida apenas hoje. Não perca esta oportunidade única!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ProgramaçãoZero. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Política de Privacidade | Termos de Uso | Contato: contato@programacaozero.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            const distance = tomorrow - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                String(hours).padStart(2, '0') + ":" + 
+                String(minutes).padStart(2, '0') + ":" + 
+                String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Fechar todas as outras
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question i').forEach(item => {
+                    item.style.transform = 'rotate(0deg)';
+                });
+                
+                // Abrir a atual
+                answer.classList.add('active');
+                icon.style.transform = 'rotate(45deg)';
+            }
+        }
+
+        // Smooth scroll para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação de entrada dos elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.benefit-card, .testimonial, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Configurar links de compra (VOCÊ DEVE SUBSTITUIR PELO SEU LINK DA KIWIFY)
+        const linkCompra = "https://pay.kiwify.com.br/Z1mNKH7"; // SUBSTITUA PELO SEU LINK
+        
+        document.getElementById('cta-comprar').href = linkCompra;
+        document.getElementById('cta-comprar-final').href = linkCompra;
+        document.querySelector('.cta-header').href = linkCompra;
+    </script>
+</body>
+</html>
+
